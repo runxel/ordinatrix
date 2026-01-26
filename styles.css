@@ -113,6 +113,12 @@ textarea {
 	border: 1px solid var(--border-color);
 }
 
+.inputs-line {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
 .inputs {
 	display: flex;
 	flex-direction: column;
@@ -120,17 +126,35 @@ textarea {
 }
 
 .inputs label {
-	/* display: flex;
-	justify-content: space-between;
-	align-items: center; */
+	display: flex;
+	align-items: center;
+	gap: 8px;
 	font-size: 0.9rem;
 }
 
 input[type="number"] {
-	padding: 5px;
-	width: 80px;
+	padding: 6px 8px;
+	width: 120px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+}
+
+.icon-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	background: #f5f5f5;
+	color: #444;
+	cursor: pointer;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.icon-btn:hover {
+	background: #eaeaea;
+	color: var(--primary);
 }
 
 .actions {

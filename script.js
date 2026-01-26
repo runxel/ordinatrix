@@ -9,12 +9,19 @@ class Ordinatrix {
 		this.typeEl = document.getElementById('transformType');
 		this.copyBtn = document.getElementById('copyBtn');
 		this.useInputBtn = document.getElementById('useInputBtn');
+		this.resetBtns = document.querySelectorAll('.reset-btn');
 
 		// Cache input elements
 		this.transforms = {
 			t: { x: 'transX', y: 'transY', z: 'transZ' },
 			s: { x: 'scaleX', y: 'scaleY', z: 'scaleZ' },
 			r: { x: 'rotX', y: 'rotY', z: 'rotZ' }
+		};
+
+		this.defaults = {
+			translate: { transX: 0, transY: 0, transZ: 0 },
+			scale: { scaleX: 1, scaleY: 1, scaleZ: 1 },
+			rotate: { rotX: 0, rotY: 0, rotZ: 0 }
 		};
 
 		this.attachListeners();
@@ -27,6 +34,9 @@ class Ordinatrix {
 		this.typeEl.addEventListener('change', () => this.updateUI());
 		this.copyBtn.addEventListener('click', () => this.copyToClipboard());
 		this.useInputBtn.addEventListener('click', () => this.useOutputAsInput());
+		this.resetBtns.forEach(btn =>
+			btn.addEventListener('click', () => this.resetGroup(btn.dataset.target))
+		);
 	}
 
 	async copyToClipboard() {
@@ -45,6 +55,16 @@ class Ordinatrix {
 				this.copyBtn.textContent = 'Copy to Clipboard';
 			}, 1500);
 		}
+	}
+
+	resetGroup(type) {
+		const defaults = this.defaults[type];
+		if (!defaults) return;
+		Object.entries(defaults).forEach(([id, val]) => {
+			const el = document.getElementById(id);
+			if (el) el.value = val;
+		});
+		this.updateUI();
 	}
 
 	useOutputAsInput() {
@@ -88,7 +108,7 @@ class Ordinatrix {
 				rZ.style.display = 'flex';
 
 				// Revert label to Z
-				if (rZ.firstChild) rZ.firstChild.textContent = "Z: ";
+				if (rZ.firstChild) rZ.firstChild.textContent = "Z-axis: ";
 			} else {
 				// 2D: Show ONLY rotZ (which acts as the 2D plane rotation), hide X and Y
 				rX.style.display = 'none';

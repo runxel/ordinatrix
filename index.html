@@ -9,6 +9,18 @@
 </head>
 
 <body>
+	<svg style="display: none" version="2.0" width="20" height="20">
+		<defs>
+			<symbol id="reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+				stroke-linecap="round" stroke-linejoin="round">
+				<path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+				<path d="M3 3v5h5" />
+				<path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+				<path d="M16 16h5v5" />
+			</symbol>
+		</defs>
+		<use href="#reset" />
+	</svg>
 	<div class="container">
 		<header>
 			<h1>Ordinatrix</h1>
@@ -41,28 +53,52 @@
 
 				<div class="control-group" id="group-translate">
 					<h3>Translation</h3>
-					<div class="inputs">
-						<label>X: <input type="number" id="transX" value="0" step="any"></label>
-						<label>Y: <input type="number" id="transY" value="0" step="any"></label>
-						<label>Z: <input type="number" id="transZ" value="0" step="any"></label>
+					<div class="inputs-line">
+						<div class="inputs">
+							<label>X: <input type="number" id="transX" value="0" step="any"></label>
+							<label>Y: <input type="number" id="transY" value="0" step="any"></label>
+							<label>Z: <input type="number" id="transZ" value="0" step="any"></label>
+						</div>
+						<button class="icon-btn reset-btn" data-target="translate" title="Reset translation"
+							aria-label="Reset translation">
+							<svg version="2.0" width="20" height="20">
+								<use href="#reset" />
+							</svg>
+						</button>
 					</div>
 				</div>
 
 				<div class="control-group" id="group-scale">
 					<h3>Scaling</h3>
-					<div class="inputs">
-						<label>X: <input type="number" id="scaleX" value="1" step="any"></label>
-						<label>Y: <input type="number" id="scaleY" value="1" step="any"></label>
-						<label>Z: <input type="number" id="scaleZ" value="1" step="any"></label>
+					<div class="inputs-line">
+						<div class="inputs">
+							<label>X: <input type="number" id="scaleX" value="1" step="any"></label>
+							<label>Y: <input type="number" id="scaleY" value="1" step="any"></label>
+							<label>Z: <input type="number" id="scaleZ" value="1" step="any"></label>
+						</div>
+						<button class="icon-btn reset-btn" data-target="scale" title="Reset scaling"
+							aria-label="Reset scaling">
+							<svg version="2.0" width="20" height="20">
+								<use href="#reset" />
+							</svg>
+						</button>
 					</div>
 				</div>
 
 				<div class="control-group" id="group-rotate">
 					<h3>Rotation (Degrees)</h3>
-					<div class="inputs">
-						<label>X-axis: <input type="number" id="rotX" value="0" step="any"></label>
-						<label>Y-axis: <input type="number" id="rotY" value="0" step="any"></label>
-						<label>Z-axis: <input type="number" id="rotZ" value="0" step="any"></label>
+					<div class="inputs-line">
+						<div class="inputs">
+							<label>X-axis: <input type="number" id="rotX" value="0" step="any"></label>
+							<label>Y-axis: <input type="number" id="rotY" value="0" step="any"></label>
+							<label>Z-axis: <input type="number" id="rotZ" value="0" step="any"></label>
+						</div>
+						<button class="icon-btn reset-btn" data-target="rotate" title="Reset rotation"
+							aria-label="Reset rotation">
+							<svg version="2.0" width="20" height="20">
+								<use href="#reset" />
+							</svg>
+						</button>
 					</div>
 				</div>
 
