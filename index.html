@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ordinatrix - Coordinate Transformer</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<h1>Ordinatrix</h1>
+			<p>Coordinate Transformation Tool</p>
+		</header>
+
+		<main>
+			<section class="input-section">
+				<h2>1. Input Data</h2>
+				<div class="input-options">
+					<label><input type="checkbox" id="hasZ" checked> Has Z Coordinate</label>
+					<label><input type="checkbox" id="hasStatus" checked> Has Status Bit</label>
+				</div>
+				<p class="hint">Format depends on selection (e.g., x, y, z, i)</p>
+				<textarea id="inputData" placeholder="Example:&#10;10.5, 20, 0, 1&#10;5, 5, 10, 0"></textarea>
+			</section>
+
+			<section class="controls-section">
+				<h2>2. Transformation</h2>
+
+				<div class="mode-select" style="margin-bottom: 20px;">
+					<label><strong>Transformation Type:</strong>
+						<select id="transformType" style="padding: 5px; font-size: 1rem; margin-left: 10px;">
+							<option value="translate">Translation</option>
+							<option value="scale">Scaling</option>
+							<option value="rotate">Rotation</option>
+						</select>
+					</label>
+				</div>
+
+				<div class="control-group" id="group-translate">
+					<h3>Translation</h3>
+					<div class="inputs">
+						<label>X: <input type="number" id="transX" value="0" step="any"></label>
+						<label>Y: <input type="number" id="transY" value="0" step="any"></label>
+						<label>Z: <input type="number" id="transZ" value="0" step="any"></label>
+					</div>
+				</div>
+
+				<div class="control-group" id="group-scale">
+					<h3>Scaling</h3>
+					<div class="inputs">
+						<label>X: <input type="number" id="scaleX" value="1" step="any"></label>
+						<label>Y: <input type="number" id="scaleY" value="1" step="any"></label>
+						<label>Z: <input type="number" id="scaleZ" value="1" step="any"></label>
+					</div>
+				</div>
+
+				<div class="control-group" id="group-rotate">
+					<h3>Rotation (Degrees)</h3>
+					<div class="inputs">
+						<label>X-axis: <input type="number" id="rotX" value="0" step="any"></label>
+						<label>Y-axis: <input type="number" id="rotY" value="0" step="any"></label>
+						<label>Z-axis: <input type="number" id="rotZ" value="0" step="any"></label>
+					</div>
+				</div>
+
+				<div class="actions">
+					<button id="processBtn">Process Coordinates</button>
+				</div>
+			</section>
+
+			<section class="output-section">
+				<h2>3. Output</h2>
+				<textarea id="outputData" readonly placeholder="Result will appear here..."></textarea>
+				<div class="actions" style="margin-top: 10px; display: flex; gap: 10px;">
+					<button id="copyBtn" class="secondary-btn">Copy to Clipboard</button>
+					<button id="useInputBtn" class="secondary-btn">Use as Input</button>
+				</div>
+			</section>
+		</main>
+	</div>
+	<script src="script.js" type="module"></script>
+</body>
+
+</html>
