@@ -227,11 +227,21 @@ class Ordinatrix {
 			let y = p.y;
 			let z = p.z;
 
-			// If status has 2000 bit set, x/y are radius/angle - preserve unchanged
+			// If status has 2000/4000 bit set, x/y are radius/angle
 			if (this.isPolar(p.i)) {
+				let angle = p.y;
+
+				// For scaling: mirroring in X or Y negates the angle (XOR - if both, they cancel)
+				if (type === 'scale') {
+					const s = this.getValues('s');
+					if ((s.x < 0) !== (s.y < 0)) {
+						angle = -angle;
+					}
+				}
+
 				return {
 					x: p.x,
-					y: p.y,
+					y: this.formatNum(angle),
 					z: p.z,
 					i: p.i
 				};
