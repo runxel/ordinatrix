@@ -209,6 +209,14 @@ class Ordinatrix {
 		return { x: x_3, y: y_3, z: z_3 };
 	}
 
+	// Check if status code has the 2000 or 4000 bit set (polar coordinates: radius/angle)
+	isPolar(status) {
+		if (status === null || status === undefined) return false;
+		const code = parseInt(status, 10);
+		if (isNaN(code)) return false;
+		return (code & 2000) === 2000 || (code & 4000) === 4000;
+	}
+
 	process() {
 		const rawText = this.inputEl.value;
 		const points = this.parseInput(rawText);
@@ -218,6 +226,16 @@ class Ordinatrix {
 			let x = p.x;
 			let y = p.y;
 			let z = p.z;
+
+			// If status has 2000 bit set, x/y are radius/angle - preserve unchanged
+			if (this.isPolar(p.i)) {
+				return {
+					x: p.x,
+					y: p.y,
+					z: p.z,
+					i: p.i
+				};
+			}
 
 			if (type === 'scale') {
 				const s = this.getValues('s');
