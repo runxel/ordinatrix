@@ -209,12 +209,13 @@ class Ordinatrix {
 		return { x: x_3, y: y_3, z: z_3 };
 	}
 
-	// Check if status code has the 2000 or 4000 bit set (polar coordinates: radius/angle)
+	// Check if status code has 2000 or 4000 base (polar coordinates: radius/angle)
+	// The lower digits (0-99) may contain other flags, so we check the range
 	isPolar(status) {
 		if (status === null || status === undefined) return false;
 		const code = parseInt(status, 10);
 		if (isNaN(code)) return false;
-		return (code & 2000) === 2000 || (code & 4000) === 4000;
+		return (code >= 2000 && code < 2100) || (code >= 4000 && code < 4100);
 	}
 
 	process() {
